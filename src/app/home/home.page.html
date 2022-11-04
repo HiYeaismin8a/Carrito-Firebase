@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Hibridas
+      <h1>Productos</h1>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -33,35 +33,23 @@
       </ion-button>
     </ion-col>
 
-    <!--Pendiente
-    <ion-col size-lg="1" size-xs="6">
-      <ion-button id="newTask" expand="block" *ngIf="clave" (click)="objetocreado2(clave, foto, descripcion, precio);ionViewLoaded()">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-col>-->
-
-
   </ion-row>
-  
-  
+
   <ion-row>
     <ion-col>
       <ion-list>
         <ion-item-sliding *ngFor="let item of products; let i=index">
           <ion-item >
-            <ion-label>
-
-              
-                         
+            <ion-label>                 
               <img [src]="item.foto" class="ion-float-left"/>
               <ion-chip color="primary" outline="true" class="ion-float-left">
                 <ion-label>{{item.descripcion}}</ion-label>
               </ion-chip>
 
-              <ion-buttons slot="end">
-                <ion-button (click)="getProdyctByClave(item.clave)">
+              <ion-buttons slot="end" class="ion-float-right">
+                <ion-button (click)="getProdyctByClave(item.clave) ">
                   <ion-icon slot="end" name="add"></ion-icon>
-                  Click me
+                  <h1>Ver detalles</h1>
                 </ion-button>
               </ion-buttons>
 
@@ -77,4 +65,6 @@
       </ion-list>
     </ion-col>
   </ion-row>
+
+    <ion-button id="carrito" color="success"><ion-icon name="cart-outline"></ion-icon></ion-button>
 </ion-content>
