@@ -1,0 +1,17 @@
+img{
+    width: 100px; 
+    border-radius:40px;
+    display: block; 
+    margin: auto;
+}
+#container {
+    text-align: left;
+    left: 0;
+    padding: 30px;
+    right: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 50%;
+  }

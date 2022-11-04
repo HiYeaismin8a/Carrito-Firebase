@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>detalles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+  <ion-card>
+      <img [src]="product.foto" />
+      <ion-card-header>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-card-title>
+              <ion-label>
+                  <ion-chip color="primary" outline="true" class="ion-float-right">
+                      <ion-label>Precio: {{product.precio}}</ion-label>
+                  </ion-chip>
+              </ion-label>
+              
+          </ion-card-title>
+          <ion-card-subtitle>{{product.descripcion}}</ion-card-subtitle>
+    </ion-card-content>
+  </ion-card>
+</div>
+</ion-content>

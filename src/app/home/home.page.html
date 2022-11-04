@@ -1,20 +1,80 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Hibridas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <ion-row>
+    <ion-col size-lg="11" size-xs="6">
+      <ion-item>
+        <ion-label position="floating">Clave</ion-label>
+        <ion-input autofocus #inputProduct [(ngModel)]="clave"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Foto</ion-label>
+        <ion-input autofocus #inputProduct [(ngModel)]="foto"></ion-input>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="floating">Descripcion</ion-label>
+        <ion-input autofocus #inputProduct [(ngModel)]="descripcion"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input autofocus #inputProduct [(ngModel)]="precio"></ion-input>
+      </ion-item>
+    </ion-col>
+     <ion-col size-lg="1" size-xs="6">
+      <ion-button id="newProduct" expand="block" (click)="addProduct(obtenerCampos(clave, foto, descripcion, precio));ionViewLoaded()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-col>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <!--Pendiente
+    <ion-col size-lg="1" size-xs="6">
+      <ion-button id="newTask" expand="block" *ngIf="clave" (click)="objetocreado2(clave, foto, descripcion, precio);ionViewLoaded()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-col>-->
+
+
+  </ion-row>
+  
+  
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item-sliding *ngFor="let item of products; let i=index">
+          <ion-item >
+            <ion-label>
+
+              
+                         
+              <img [src]="item.foto" class="ion-float-left"/>
+              <ion-chip color="primary" outline="true" class="ion-float-left">
+                <ion-label>{{item.descripcion}}</ion-label>
+              </ion-chip>
+
+              <ion-buttons slot="end">
+                <ion-button (click)="getProdyctByClave(item.clave)">
+                  <ion-icon slot="end" name="add"></ion-icon>
+                  Click me
+                </ion-button>
+              </ion-buttons>
+
+            </ion-label>
+          </ion-item>
+
+          <!--<ion-item-options side="end" (ionSwipe)="removeStudent(i)">
+            <ion-item-option expandable color="danger">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>-->
+        </ion-item-sliding>
+      </ion-list>
+    </ion-col>
+  </ion-row>
 </ion-content>
