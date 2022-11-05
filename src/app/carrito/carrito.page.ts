@@ -9,6 +9,7 @@ import { AlertController } from "@ionic/angular";
   templateUrl: './carrito.page.html',
   styleUrls: ['./carrito.page.scss'],
 })
+
 export class CarritoPage implements OnInit {
   productos: Products[];
   constructor(
