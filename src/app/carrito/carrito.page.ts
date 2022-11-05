@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Products } from '../models/products';
+
+import { AlertController } from '@ionic/angular';
 import { ProductoService } from '../services/producto.service';
-import { AlertController } from "@ionic/angular";
+import { Products } from '../models/products';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
@@ -42,7 +43,7 @@ export class CarritoPage implements OnInit {
           text: 'Cancelar',
           role: 'cancel',
           handler: ()=> {
-            
+
           }
         },
         {
@@ -54,8 +55,7 @@ export class CarritoPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
-
   }
+
 }
