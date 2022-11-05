@@ -53,7 +53,7 @@
       <ion-button
         id="newProduct"
         expand="block"
-        (click)="addProduct(obtenerCampos(clave, foto, descripcion, precio));"
+        (click)="addProduct(obtenerCampos(clave, foto, descripcion, precio, 1));"
       >
         <ion-icon name="add"></ion-icon>
       </ion-button>
@@ -65,20 +65,21 @@
       <ion-list>
         <ion-item-sliding *ngFor="let item of products; let i=index">
           <ion-item>
+
             <ion-label>
               <img [src]="item.foto" class="ion-float-left" />
-              <ion-chip color="primary" outline="true" class="ion-float-left">
-                <ion-label>{{item.descripcion}}</ion-label>
-              </ion-chip>
-
-              <ion-buttons slot="end" class="ion-float-right">
-                <ion-button (click)="getProdyctByClave(item.clave) ">
-                  <ion-icon slot="end" name="add"></ion-icon>
-                  <h1>Ver Detalles</h1>
-                </ion-button>
-              </ion-buttons>
-              
             </ion-label>
+            <ion-label>{{item.descripcion}}</ion-label>
+            <ion-chip color="danger" outline="true" class="ion-float-left">
+              <ion-label>{{item.cantidad}}</ion-label>
+            </ion-chip>
+
+            <ion-buttons slot="end" class="ion-float-right">
+              <ion-button (click)="getProdyctByClave(item.clave) ">
+                <ion-icon slot="end" name="add"></ion-icon>
+                <h1>Ver Detalles</h1>
+              </ion-button>
+            </ion-buttons>
           </ion-item>
         </ion-item-sliding>
       </ion-list>
