@@ -3,4 +3,5 @@ export class Products {
     foto?: string;
     descripcion: string;
     precio: number;
+    cantidad: number;
 }

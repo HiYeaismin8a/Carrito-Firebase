@@ -31,10 +31,8 @@ export class HomePage implements OnInit {
     this.foto = 'https://picsum.photos/id/237/200/300';
     this.router.events.subscribe((observer) => {
       if (observer instanceof NavigationEnd) {
-        // console.log(observer instanceof NavigationEnd);
         if (observer.url === '/') {
           this.ngOnInit();
-          console.log('ejecutado');
         }
       }
     });
@@ -56,26 +54,35 @@ export class HomePage implements OnInit {
     });
   }
 
-
   public obtenerCampos(
-    clave2: string,
-    foto2: string,
-    descripcion2: string,
-    precio2: number
+    clave: string,
+    foto: string,
+    descripcion: string,
+    precio: number,
+    cantidad: number
   ): Products {
     let item: Products = {
-      clave: clave2,
-      descripcion: descripcion2,
-      precio: precio2,
-      foto: foto2,
+      clave,
+      descripcion,
+      precio,
+      foto,
+      cantidad,
     };
     return item;
   }
 
   public addProduct(products2act: Products) {
     if (!this.validaciones()) return;
+
+    let producto = this.products.find((p) => {
+      //si se encuentra un producto con la misma clave
+      return p.clave === products2act.clave;
+    });
+    if (producto) {
+      producto.cantidad ++;
+      return; //Para que no siga avanzando
+    }
     this.products = this.productoService.addProduct(products2act);
-    console.log(this.products);
   }
 
   public validaciones(): Boolean {

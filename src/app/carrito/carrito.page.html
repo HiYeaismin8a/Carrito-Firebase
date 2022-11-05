@@ -30,6 +30,30 @@
                 CLAVE: - {{ producto.clave }}
               </ion-card-title>
             </ion-col>
+            <ion-col size="3" >
+              <ion-row>
+                <ion-col>
+                  <ion-button (click)="quitarArticulos(producto)">
+                    <ion-icon name="remove-circle-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+
+                <ion-col>
+                  <ion-card-title
+                    class="ion-margin-top ion-margin-bottom"
+                    type="submit"
+                    color="danger"
+                  >
+                    CANTIDAD:{{producto.cantidad}}
+                  </ion-card-title>
+                </ion-col>
+                <ion-col>
+                  <ion-button (click)="agregarMasArticulos(producto)">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
             <ion-col>
               <ion-card-title
                 class="ion-margin-top ion-margin-bottom"
@@ -63,7 +87,6 @@
               <ion-icon name="trash-outline"> </ion-icon>
             </ion-item-option>
           </ion-item-options>
-
         </ion-grid>
       </ion-item>
     </ion-item-sliding>
@@ -72,10 +95,8 @@
   <ion-item>
     <ion-label>
       <ion-chip color="primary" outline="true" class="ion-float-right">
-          <ion-label>Total:$ </ion-label>
+        <ion-label>Total:$ {{total}}</ion-label>
       </ion-chip>
-  </ion-label>
+    </ion-label>
   </ion-item>
-
-
 </ion-content>
