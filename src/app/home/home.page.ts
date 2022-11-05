@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
-import { Products } from '../models/products';
-import { Input, ViewChild } from '@angular/core';
+import { AlertController, IonInput } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+
 import { ProductoService } from '../services/producto.service';
-import { AlertController, IonInput, NavController } from '@ionic/angular';
+import { Products } from '../models/products';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +31,7 @@ export class HomePage implements OnInit {
     this.foto = 'https://picsum.photos/id/237/200/300';
     this.router.events.subscribe((observer) => {
       if (observer instanceof NavigationEnd) {
-       // console.log(observer instanceof NavigationEnd);
+        // console.log(observer instanceof NavigationEnd);
         if (observer.url === '/') {
           this.ngOnInit();
           console.log('ejecutado');
@@ -132,4 +132,3 @@ export class HomePage implements OnInit {
 function isBlank() {
   throw new Error('Function not implemented.');
 }
-
