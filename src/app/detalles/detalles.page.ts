@@ -1,6 +1,6 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from '../services/producto.service';
 import { Products } from '../models/products';
 
@@ -11,15 +11,22 @@ import { Products } from '../models/products';
 })
 export class DetallesPage implements OnInit {
   public product: Products;
-  
+
   constructor(
     private productoService: ProductoService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    if (!router.getCurrentNavigation().extras.queryParams) {
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.product = this.productoService.getProdyctByClave(params.clave);
+      if (params) {
+        this.product = this.productoService.getProdyctByClave(params.clave);
+      }
     });
   }
 }

@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="product">
   <div id="container">
     <ion-card>
       <img [src]="product.foto" />
@@ -31,3 +31,5 @@
     </ion-card>
   </div>
 </ion-content>
+
+<!--YA NO SE ROMPE-->
