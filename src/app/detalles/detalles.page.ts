@@ -10,12 +10,14 @@ import { ProductoService } from '../services/producto.service';
 })
 export class DetallesPage implements OnInit {
   public product: Products;
-  constructor(private productoService: ProductoService, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private productoService: ProductoService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.product = this.productoService.getProdyctByClave(params.clave);
     });
   }
-
 }
