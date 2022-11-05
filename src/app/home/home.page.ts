@@ -56,6 +56,7 @@ export class HomePage implements OnInit {
     });
   }
 
+
   public obtenerCampos(
     clave2: string,
     foto2: string,
