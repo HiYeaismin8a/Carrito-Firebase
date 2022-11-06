@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
   public clave: string = '';
   public descripcion: string = '';
   public precio: number;
-  public foto: string;
+  public foto: string= '';
   @ViewChild('inputClave') inputClave: IonInput;
   @ViewChild('inputFoto') inputFoto: IonInput;
   @ViewChild('inputDescripcion') inputDescripcion: IonInput;
@@ -28,7 +28,6 @@ export class HomePage implements OnInit {
     private alertController: AlertController
   ) {
     this.products = this.productoService.getProductos();
-    this.foto = 'https://picsum.photos/id/237/200/300';
     this.router.events.subscribe((observer) => {
       if (observer instanceof NavigationEnd) {
         if (observer.url === '/') {
