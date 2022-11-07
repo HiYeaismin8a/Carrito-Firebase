@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
     private alertController: AlertController
   ) {
     this.products = this.productoService.getProductos();
-    this.foto = 'https://picsum.photos/id/237/200/300';
+    this.foto = 'https://www.apple.com/v/iphone-14-pro/a/images/meta/iphone-14-pro_overview__e2a7u9jy63ma_og.png';
     this.router.events.subscribe((observer) => {
       if (observer instanceof NavigationEnd) {
         if (observer.url === '/') {
