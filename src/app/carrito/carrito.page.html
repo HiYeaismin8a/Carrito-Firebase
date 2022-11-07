@@ -44,7 +44,7 @@
                     type="submit"
                     color="danger"
                   >
-                    CANTIDAD:{{producto.cantidad}}
+                    CANTIDAD: {{producto.cantidad }}
                   </ion-card-title>
                 </ion-col>
                 <ion-col>
@@ -69,7 +69,7 @@
                 type="submit"
                 color="secondary"
               >
-                PRECIO: - {{ producto.precio }}
+                PRECIO: {{ producto.precio |currency}}
               </ion-card-title>
             </ion-col>
           </ion-row>
@@ -95,7 +95,7 @@
   <ion-item>
     <ion-label>
       <ion-chip color="primary" outline="true" class="ion-float-right">
-        <ion-label>Total:$ {{total}}</ion-label>
+        <ion-label>Total: {{total |currency}}</ion-label>
       </ion-chip>
     </ion-label>
   </ion-item>
