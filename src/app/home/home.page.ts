@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
   public clave: string = '';
   public descripcion: string = '';
   public precio: number;
-  public foto: string;
+  public foto: string= '';
   @ViewChild('inputClave') inputClave: IonInput;
   @ViewChild('inputFoto') inputFoto: IonInput;
   @ViewChild('inputDescripcion') inputDescripcion: IonInput;
