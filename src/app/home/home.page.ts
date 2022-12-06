@@ -1,9 +1,9 @@
 import { AlertController, IonInput } from '@ionic/angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
 
 import { ProductoService } from '../services/producto.service';
 import { Products } from '../models/products';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +11,14 @@ import { Products } from '../models/products';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  public products: Products[];
+  public products: Products[] = [];
   public products2: Products;
   public clave: string = '';
   public descripcion: string = '';
   public precio: number;
-  public foto: string= '';
+  public foto: string =
+    'https://www.apple.com/v/iphone-14-pro/a/images/meta/iphone-14-pro_overview__e2a7u9jy63ma_og.png';
+
   @ViewChild('inputClave') inputClave: IonInput;
   @ViewChild('inputFoto') inputFoto: IonInput;
   @ViewChild('inputDescripcion') inputDescripcion: IonInput;
@@ -27,20 +29,21 @@ export class HomePage implements OnInit {
     private router: Router,
     private alertController: AlertController
   ) {
-    this.products = this.productoService.getProductos();
-    this.foto = 'https://www.apple.com/v/iphone-14-pro/a/images/meta/iphone-14-pro_overview__e2a7u9jy63ma_og.png';
-    this.router.events.subscribe((observer) => {
-      if (observer instanceof NavigationEnd) {
-        if (observer.url === '/') {
-          this.ngOnInit();
-        }
-      }
-    });
+    this.productoService
+      .getProductos()
+      .snapshotChanges()
+      .subscribe((valProducto) => {
+        this.products = [];
+        //logica carrito
+        valProducto.forEach((valor) => {
+          const producto = valor.payload.doc.data();
+          producto.id = valor.payload.doc.id;
+          this.products.push(producto);
+        });
+      });
   }
 
-  ngOnInit() {
-    this.products = this.productoService.getProductos();
-  }
+  ngOnInit() {}
 
   public getProdyctByClave(clave: string): void {
     this.router.navigate(['/detalles'], {
@@ -48,10 +51,8 @@ export class HomePage implements OnInit {
     });
   }
 
-  public abrirCarrito(clave: string): void {
-    this.router.navigate(['/carrito'], {
-      queryParams: { clave: clave },
-    });
+  public abrirCarrito(): void {
+    this.router.navigate(['/carrito']);
   }
 
   public obtenerCampos(
@@ -61,28 +62,34 @@ export class HomePage implements OnInit {
     precio: number,
     cantidad: number
   ): Products {
-    let item: Products = {
+    return {
       clave,
       descripcion,
       precio,
       foto,
       cantidad,
     };
-    return item;
   }
 
   public addProduct(products2act: Products) {
     if (!this.validaciones()) return;
 
-    let producto = this.products.find((p) => {
+    const producto = this.products.find((p) => {
       //si se encuentra un producto con la misma clave
       return p.clave === products2act.clave;
     });
     if (producto) {
-      producto.cantidad ++;
-      return; //Para que no siga avanzando
+      producto.cantidad++;
+      this.productoService
+        .updateProduct(producto)
+        .then()
+        .catch((e) => console.log(e));
+    } else {
+      this.productoService
+        .addProduct(products2act)
+        .then()
+        .catch((e) => console.log(e));
     }
-    this.products = this.productoService.addProduct(products2act);
   }
 
   public validaciones(): Boolean {
@@ -135,8 +142,4 @@ export class HomePage implements OnInit {
     });
     await alert.present();
   }
-}
-
-function isBlank() {
-  throw new Error('Function not implemented.');
 }

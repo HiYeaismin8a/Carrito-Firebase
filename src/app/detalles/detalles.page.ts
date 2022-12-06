@@ -25,7 +25,9 @@ export class DetallesPage implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params) {
-        this.product = this.productoService.getProdyctByClave(params.clave);
+        this.productoService.getProdyctByClave(params.clave).then((val) => {
+          this.product = val.docs[0].data();
+        });
       }
     });
   }

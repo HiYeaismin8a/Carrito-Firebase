@@ -4,4 +4,5 @@ export class Products {
     descripcion: string;
     precio: number;
     cantidad: number;
+    id?: string;
 }
